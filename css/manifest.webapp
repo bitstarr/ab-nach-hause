@@ -1,0 +1,32 @@
+{
+  "name": "Ab nach Hause",
+  "description": "End of Work Countdown",
+  "type": "certified",
+  "launch_path": "/index.html",
+  "orientation": "portrait-primary",
+  "fullscreen": true,
+  "developer": {
+    "name": "Sebastian Laube",
+    "url": "https://bitbucket.org/bitstarr/go-home"
+  },
+  "permissions": {
+    "storage":{},
+    "device-storage:apps":{ "access": "readwrite" }
+  },
+  "locales": {
+    "en-US": {
+      "name": "Work is over",
+      "description": "End of Work Countdown"
+    },
+    "de": {
+      "name": "Ab nach Hause",
+      "description": "Ein Feierabend-Countdown"
+    }
+  },
+  "default_locale": "de",
+  "icons": {
+    "30": "img/anh30.png",
+    "60": "ímg/anh60.png",
+    "128": "img/anh128.png"
+  }
+}
