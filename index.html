@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <title>Ab nach Hause</title>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-    <link rel="stylesheet" type="text/css" href="screen.css" />
+    <link rel="stylesheet" type="text/css" href="css/app.css" />
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css' />
 </head>
 <!--[if lt IE 7 ]> <body class="ie6"> <![endif]-->
@@ -20,7 +20,11 @@
         <h2>Dein Feierabend:</h2>
         <form action="/" method="post" class="clearfix" id="feierabend">
             <p class="pseudoLabel"><input id="myHour" name="myHour" type="text" class="text" /></p>
-            <p class="pseudoLabel"><input id="myMinute" name="myMinute" type="text"class="text" /></p>
+            <p class="pseudoLabel"><input id="myMinute" name="myMinute" type="text" class="text" /></p>
+            <label>
+                <input id="tomorrow" name="tomorrow" type="checkbox" data-type="switch" />
+                <span></span>
+            </label>
             <p class="pseudoLabel">
                 <button type="submit" class="button">Speichern</button>
             </p>

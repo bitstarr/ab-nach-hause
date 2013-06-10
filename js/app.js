@@ -49,7 +49,7 @@ var countdown = {
     },
     calculateDate: function (hour, minute, tomorrow) {
         var now = new Date(),
-            day = (tomorrow === 0) ? now.getDate() : now.getDate() +1,
+            day = (tomorrow === false) ? now.getDate() : now.getDate() +1,
             result = new Date(now.getFullYear(), now.getMonth(), day, hour, minute);
         return result;
     },
@@ -70,45 +70,51 @@ var feierabend = {
             hour: '17',
             minute: '00'
         },
-        storage: window.localStorage,
+        storage: window.localStorage || false,
         fieldH: document.getElementById('myHour'),
-        fieldM: document.getElementById('myMinute')
+        fieldM: document.getElementById('myMinute'),
+        fieldT: document.getElementById('tomorrow')
     },
     getFeierabend: function () {
         var that = feierabend.config,
-            time = that.storage.getItem(that.title);
+            time = that.storage.getItem(that.title),
+            tomorrow = that.storage.getItem(that.title + 'Tomorrow') ||  false,
+            output;
         if (time === null) {
             that.storage.setItem(that.title, that.defaults.hour + ':' + that.defaults.minute);
-            return [that.defaults.hour, that.defaults.minute];
+            output = [that.defaults.hour, that.defaults.minute];
         }
         else {
-            return time.split(':');
+            output = time.split(':');
         }
+        output.push(tomorrow);
+        return output;
+
     },
-    setFeierabend: function (feierabend) {
+    setFeierabend: function (time, tomorrow) {
         var that = feierabend.config;
-        that.storage.setItem(that.title, feierabend);
+        that.storage.setItem(that.title, time[0] + ':' + time[1]);
+        that.storage.setItem(that.title + 'Tomorrow', !!tomorrow);
     },
-    fillForm: function (time) {
+    fillForm: function (saveData) {
         var that = feierabend.config;
-        that.fieldH.value = time[0];
-        that.fieldM.value = time[1];
+        that.fieldH.value = saveData[0];
+        that.fieldM.value = saveData[1];
+        that.fieldT.checked = saveData[2] || false;
     },
     processForm: function(e) {
         e.preventDefault();
         e.stopPropagation();
-        var that = feierabend.config,
-            h = that.fieldH.value,
-            m = that.fieldM.value;
-        that.storage.setItem(that.title, h + ':' + m);
+        var that = feierabend.config;
+        feierabend.setFeierabend([that.fieldH.value, that.fieldM.value], that.fieldT.checked);
         countdown.stop();
-        countdown.init(h, m, 0, 'countdown');
+        countdown.init(that.fieldH.value, that.fieldM.value, 0, 'countdown');
     },
     init: function () {
         addEvent(document.forms.feierabend, 'submit', feierabend.processForm);
-        var time = feierabend.getFeierabend();
-        feierabend.fillForm(time);
-        countdown.init(time[0], time[1], 0, 'countdown');
+        var saveData = feierabend.getFeierabend();
+        feierabend.fillForm(saveData);
+        countdown.init(saveData[0], saveData[1], saveData[2], 'countdown');
     }
 };
 
