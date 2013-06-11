@@ -1,1 +1,36 @@
 @import url(switches.css);
+
+body { margin: 0; padding: 0}
+
+#slide {
+    position: absolute;
+    top: 0;
+    right: 100%;
+    height: 100%;
+    width: 100%;
+    background: rgba(0,0,0,.3);
+
+    -webkit-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out;
+}
+
+#slideaction {
+    position: absolute;
+    right: -2em;
+    bottom: 1em;
+    width: 2em;
+    height: 2em;
+    line-height: 2em;
+    text-align: center;
+    background: #fc0;
+}
+
+.show #slideaction {
+    -webkit-transform: translate(-2em,0);
+    transform: translate(-2em,0);
+}
+
+#slide.show {
+    -webkit-transform: translate(100%,0);
+    transform: translate(100%,0);
+}
