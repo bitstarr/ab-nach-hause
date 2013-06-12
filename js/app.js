@@ -21,6 +21,11 @@ function removeEvent( obj, type, fn ) {
     }
 }
 
+// sweet js for leading zero
+Number.prototype.pad = function(n) {
+    return ('0000000000' + this).slice((n || 2) * -1);
+}
+
 var countdown = {
     config: {
         end: new Date(),
@@ -45,7 +50,9 @@ var countdown = {
         var hours = Math.floor((distance % that.day) / that.hour),
             minutes = Math.floor((distance % that.hour) / that.minute),
             seconds = Math.floor((distance % that.minute) / that.second),
-            string = hours + 'hrs ' + minutes + 'mins ' + seconds + 'secs';
+            string = '<span class="flip">' + hours.pad() + '</span> ';
+            string+= '<span class="flip">' + minutes.pad() + '</span> ';
+            string+= '<span class="flip">' + seconds.pad() + '</span>';
 
         document.getElementById(that.id).innerHTML = string;
     },
@@ -111,7 +118,7 @@ var feierabend = {
     processForm: function(e) {
         e.preventDefault();
         e.stopPropagation();
-        navigator.vibrate(100);
+        //navigator.vibrate(100);
         var that = feierabend.config;
         feierabend.setFeierabend([that.fieldH.value, that.fieldM.value], that.fieldT.checked);
         countdown.stop();
