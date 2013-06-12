@@ -13,12 +13,12 @@
 
 html, body {
     min-height: 100%;
+    height: 100%
 }
 
 body {
     margin: 0;
     padding: 0;
-    height: 100vh;
     font: 1em/1.4 "Nimbus Sans L", "Freesans", sans-serif;
     background: #0095dd -webkit-radial-gradient(center, ellipse cover, rgba(0,0,0,0) 50%,rgba(0,0,0, .2) 100%);
     background: #0095dd radial-gradient(ellipse at center, rgba(0,0,0,0) 50%, rgba(0,0,0,.2) 100%);
@@ -28,6 +28,7 @@ body {
     position: relative;
     top: 50%;
     margin-top: -.8em;
+    font-size: 3em;
     font-size: 14vw;
     text-align: center;
 }
@@ -42,7 +43,7 @@ body {
     color: #eee;
     border: 1px solid #000;
     border-radius: 6px;
-    background: #333 -webkit-linear-gradient(top, rgba(0,0,0,.2) 0, rgba(0,0,0,0) 30%, rgba(0,0,0,0) 70%, rgba(0,0,0,.2) 100%);
+    background: #333 -webkit-linear-gradient(top, rgba(0,0,0,.3) 0, rgba(0,0,0,0) 30%, rgba(0,0,0,0) 70%, rgba(0,0,0,.2) 100%);
     background: #333 linear-gradient(to bottom, rgba(0,0,0,.3) 0, rgba(0,0,0,0) 30%, rgba(0,0,0,0) 70%, rgba(0,0,0,.3) 100%);
     -webkit-box-shadow: 0 1px 3px 1px rgba(0, 0, 0, .3), 0 1px 0 rgba(255,255,255,.3) inset ,0 0 1px rgba(255,255,255,.3) inset;
     box-shadow: 0 1px 3px 1px rgba(0, 0, 0, .3), 0 1px 0 rgba(255,255,255,.3) inset ,0 0 1px rgba(255,255,255,.3) inset;
@@ -66,7 +67,14 @@ body {
     height: 100%;
     width: 100%;
     overflow: hidden;
-    background: rgba(0,0,0,.8);
+
+    /*
+        https://developer.mozilla.org/en-US/docs/Mozilla/Firefox_OS/UX/Building_blocks
+        https://developer.mozilla.org/en-US/docs/Mozilla/Firefox_OS/UX/Patterns
+    */
+    background: -webkit-linear-gradient(top, rgba(59,59,59,.8), #3b3b3b 60%);
+    background: linear-gradient(to bottom, rgba(59,59,59,.8), #3b3b3b 60%);
+
     -webkit-transition: all .5s ease-in-out;
     transition: all .5s ease-in-out;
 }
