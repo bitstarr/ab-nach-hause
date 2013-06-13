@@ -24,7 +24,7 @@ function removeEvent( obj, type, fn ) {
 // sweet js for leading zero
 Number.prototype.pad = function(n) {
     return ('0000000000' + this).slice((n || 2) * -1);
-}
+};
 
 var countdown = {
     config: {
@@ -118,7 +118,9 @@ var feierabend = {
     processForm: function(e) {
         e.preventDefault();
         e.stopPropagation();
-        //navigator.vibrate(100);
+        if ('vibrate' in navigator) {
+            navigator.vibrate(100);
+        }
         var that = feierabend.config;
         feierabend.setFeierabend([that.fieldH.value, that.fieldM.value], that.fieldT.checked);
         countdown.stop();

@@ -31,15 +31,23 @@ L462,283.742z M256,331.546c-41.724,0-75.548-33.823-75.548-75.546s33.824-75.547,7
 c41.723,0,75.546,33.824,75.546,75.547S297.723,331.546,256,331.546z" /></svg>
 </label>
 <div id="slide">
-    <div id="slideContent">
-        <h2>Dein Feierabend:</h2>
+    <div id="slideContent" role="dialog">
+        <header>Dein Feierabend</header>
         <form action="/" method="post" class="clearfix" id="feierabend">
-            <p class="pseudoLabel"><input id="myHour" name="myHour" type="number" class="text" /></p>
-            <p class="pseudoLabel"><input id="myMinute" name="myMinute" type="number" class="text" /></p>
-            <label>
+            <p class="timeInputs">
+                <input id="myHour" name="myHour" type="number" class="number" />
+                <span class="divider">:</span>
+                <input id="myMinute" name="myMinute" type="number" class="number" />
+            </p>
+            <!--label>
                 <input id="tomorrow" name="tomorrow" type="checkbox" data-type="switch" />
                 <span></span>
-            </label>
+            </label-->
+
+            <p>
+                <input type="checkbox" name="tomorrow" id="tomorrow" />
+                <label for="tomorrow" class="checkLabel">morgen</label>
+            </p>
             <p class="pseudoLabel">
                 <button type="submit" class="button">Speichern</button>
             </p>
