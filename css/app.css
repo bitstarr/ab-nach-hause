@@ -65,12 +65,12 @@ body {
 .flip:before {
     position: absolute;
     content: '';
-    height: 1px;
+    height: .08ex;
     top: 50%;
     left: 0;
     right: 0;
-    background: rgba(0,0,0,.4);
-    box-shadow: 0 1px 0 rgba(255,255,255,.1); 
+    background: #222;
+    box-shadow: 0 1px 0 rgba(255,255,255,.1), 0 1px 0 rgba(0,0,0,.9) inset;
 }
 
 
