@@ -12,10 +12,10 @@
 <!--[if IE 8 ]>    <body class="ie8"> <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!--> <body> <!--<![endif]-->
 
-<div id="countdown"></div>
+<div id="countdown" class="countdown"></div>
 
-<input id="slideToggle" name="slideToggle" type="checkbox" />
-<label id="slideAction" title="Settings & Info" for="slideToggle">
+<input id="slideToggle" class="slideToggle" name="slideToggle" type="checkbox" />
+<label id="slideAction" class="slideAction" title="Settings & Info" for="slideToggle">
     <svg xml:space="preserve" enable-background="new 0 0 512 512" viewBox="0 0 512 512" y="0px" x="0px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" version="1.1"> <path d="M462,283.742v-55.485l-29.981-10.662c-11.431-4.065-20.628-12.794-25.274-24.001
 c-0.002-0.004-0.004-0.009-0.006-0.013c-4.659-11.235-4.333-23.918,0.889-34.903l13.653-28.724l-39.234-39.234l-28.72,13.652
 c-10.979,5.219-23.68,5.546-34.908,0.889c-0.005-0.002-0.01-0.003-0.014-0.005c-11.215-4.65-19.933-13.834-24-25.273L283.741,50
@@ -30,8 +30,8 @@ c-5.214-10.969-5.539-23.659-0.886-34.877c0.002-0.005,0.004-0.009,0.006-0.014c4.6
 L462,283.742z M256,331.546c-41.724,0-75.548-33.823-75.548-75.546s33.824-75.547,75.548-75.547
 c41.723,0,75.546,33.824,75.546,75.547S297.723,331.546,256,331.546z" /></svg>
 </label>
-<div id="slide">
-    <div id="slideContent" role="dialog">
+<div id="slide" class="slide">
+    <div id="slideContent" class="slideContent" role="dialog">
         <header>Dein Feierabend</header>
         <form action="/" method="post" class="clearfix" id="feierabend">
             <p class="timeInputs">
@@ -45,19 +45,23 @@ c41.723,0,75.546,33.824,75.546,75.547S297.723,331.546,256,331.546z" /></svg>
             </label-->
 
             <p>
-                <input type="checkbox" name="tomorrow" id="tomorrow" />
+                <input type="checkbox" name="tomorrow" id="tomorrow" class="tomorrow" />
                 <label for="tomorrow" class="checkLabel">morgen</label>
             </p>
             <p class="pseudoLabel">
                 <button type="submit" class="button">Speichern</button>
             </p>
         </form>
-        <small>Deine Daten werden lokal auf deinem Gerät gespeichert.</small>
         
-        <small class="footer"><a href="http://sebastianlaube.de" title="Sebastian Laube">Mit Liebe gemacht</a>, inspiriert von <a href="http://breiteseite.net">Michael Kühn</a></small>
+        <p class="footer">
+            <small>Deine Daten werden lokal auf deinem Gerät gespeichert.
+            <a href="http://sebastianlaube.de" title="Sebastian Laube">Mit Liebe gemacht</a>, inspiriert von <a href="http://breiteseite.net">Michael Kühn</a></small>
+        </p>
 
+        <div class="intsall" id="install-btn">
+            <button class="button">Install</button>
+        </div>
         <div id="debug"></div>
-        <button id="install-btn">Install</button>
     </div>
 </div>
 

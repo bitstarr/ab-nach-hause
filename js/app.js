@@ -63,7 +63,7 @@ var countdown = {
         var now = new Date(),
             day = (tomorrow === 'false') ? now.getDate() : now.getDate() +1,
             result = new Date(now.getFullYear(), now.getMonth(), day, hour, minute);
-            document.getElementById('debug').innerHTML = typeof(tomorrow) + '/' + now.getDate() + '/' + day;
+            //document.getElementById('debug').innerHTML = typeof(tomorrow) + '/' + now.getDate() + '/' + day;
         return result;
     },
     stop: function () {

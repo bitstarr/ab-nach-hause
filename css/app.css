@@ -1,4 +1,8 @@
-@import url('switches.css');
+@-webkit-viewport { width: device-width }
+@-moz-viewport { width: device-width }
+@-ms-viewport { width: device-width }
+@-o-viewport { width: device-width }
+@viewport { width: device-width }
 
 @font-face {
     font-family: 'Roboto';
@@ -20,11 +24,19 @@ body {
     margin: 0;
     padding: 0;
     font: 1em/1.4 "Nimbus Sans L", "Freesans", sans-serif;
+    color: #2c3e50;
     background: #0095dd -webkit-radial-gradient(center, ellipse cover, rgba(0,0,0,0) 50%,rgba(0,0,0, .2) 100%);
     background: #0095dd radial-gradient(ellipse at center, rgba(0,0,0,0) 50%, rgba(0,0,0,.2) 100%);
 }
 
-#countdown {
+/* Focusbehandlung verbessern: http://people.opera.com/patrickl/experiments/keyboard/test */
+a { color: #2980b9; text-decoration: none }
+a:hover, a:active { color: #2c3e50; outline: none }
+
+/* Highlighting für mobile Webkits http://j.mp/webkit-tap-highlight-color */
+a:link { -webkit-tap-highlight-color: #34495e }
+
+.countdown {
     position: relative;
     top: 50%;
     margin-top: -.8em;
@@ -74,26 +86,24 @@ body {
 }
 
 
-#slide {
+.slide {
     position: absolute;
     top: 0;
     right: 100%;
     height: 100%;
     width: 100%;
     overflow: hidden;
-    color: #fff;
     /*
         https://developer.mozilla.org/en-US/docs/Mozilla/Firefox_OS/UX/Building_blocks
         https://developer.mozilla.org/en-US/docs/Mozilla/Firefox_OS/UX/Patterns
     */
-    background: -webkit-linear-gradient(top, rgba(59,59,59,.8), #3b3b3b 60%);
-    background: linear-gradient(to bottom, rgba(59,59,59,.8), #3b3b3b 60%);
+    background: rgba(189, 195, 199, .9);
 
     -webkit-transition: all .5s ease-in-out;
     transition: all .5s ease-in-out;
 }
 
-#slideAction {
+.slideAction {
     position: absolute;
     right: 1em;
     bottom: 1em;
@@ -110,14 +120,14 @@ body {
     -webkit-transition: all .5s ease-in-out;
     transition: all .5s ease-in-out;
 }
-#slideAction svg { position: absolute; top: 50%; margin: -1.25em; width: 2.5em; height: 2.5em}
+.slideAction svg { position: absolute; top: 50%; margin: -1.25em; width: 2.5em; height: 2.5em}
 
-#slideToggle { display: none }
-#slideToggle:checked ~ #slide {
+.slideToggle { display: none }
+.slideToggle:checked ~ .slide {
     -webkit-transform: translate(100%,0);
     transform: translate(100%,0);
 }
-#slideToggle:checked ~ #slideAction {
+.slideToggle:checked ~ .slideAction {
     opacity: .5;
     -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, .5);
     box-shadow: 0 0 5px rgba(0, 0, 0, .5);
@@ -125,50 +135,46 @@ body {
 
 
 
-#slideContent {
+.slideContent {
     position: relative;
     max-width: 18em;
     max-width: 18rem;
-    margin: 0 auto;
+    margin: 4em auto 0;
+    margin: 8vh auto 0;
+    text-align: center;
+    background: #fff;
 }
-#slideContent header {
+.slideContent header {
+    -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
+    box-sizing: border-box;
     display: inline-block;
     width: 100%;
-    margin: 8vh 0 0;
-    font-size: 1.6rem;
-    line-height: 1.5;
-    border-bottom: 0.1rem solid #616262;
+    font-size: 1.4rem;
+    font-weight: 700;
+    line-height: 2;
+    text-transform: uppercase;
+    color: #fff;
+    background: #2980b9
 }
 
 .timeInputs {
-    margin: 1ex 0;
-    font-size: 2.5em;
+    margin: .2ex 0;
+    font-size: 4em;
     text-align: center;
-    text-shadow: 0 2px 2px rgba(0,0,0,.5);
-    color: #ccc
+}
+.number {
+    width: 2.5ex;
+    margin: 0 .1ex;
+    font-size: 1em;
+    font-family: Roboto;
+    text-align: center;
+    color: #2c3e50;
+    border: 0;
 }
 .divider {
     font-weight: 700;
     text-decoration: blink;
-}
-.number,
-.checkLabel::before {
-    width: 2.5ex;
-    margin: 0 .2ex;
-    padding: .5ex;
-    font-family: Roboto;
-    font-size: 1em;
-    line-height: 1;
-    color: #fff;
-    text-shadow: 0 2px 2px rgba(0,0,0,.5);
-    background: rgba(255,255,255,.3);
-    border: 1px solid #333;
-    border-radius: .2em;
-    -webkit-background-clip: padding-box;
-    background-clip: padding-box;
-    -webkit-box-shadow: inset 0 2px 2px rgba(0, 0, 0, .5), 0 -1px 0 rgba(255, 255, 255,.2) inset;
-    box-shadow: inset 0 2px 2px rgba(0, 0, 0, .5), 0 -1px 0 rgba(255, 255, 255,.2) inset;
 }
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
@@ -176,12 +182,13 @@ input[type=number]::-webkit-outer-spin-button {
     margin: 0;
 }
 
-#tomorrow { display: none }
-#tomorrow:checked ~ .checkLabel::before {
+.tomorrow { display: none }
+.tomorrow:checked ~ .checkLabel::before {
     color: #fff;
-    background: #0095dd;
+    background: #2980b9;
     border-color: rgba(255,255,255,.3)
 }
+.tomorrow:checked ~ .checkLabel { color: #2980b9 }
 .checkLabel::before {
     content: '\2713';
     display: inline-block;
@@ -192,7 +199,44 @@ input[type=number]::-webkit-outer-spin-button {
     color: transparent;
     line-height: 2.5ex;
     text-align: center;
-    text-shadow: none;
+    background: #d7dade;
+    -webkit-border-radius: .2em;
+    border-radius: .2em;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
     -webkit-transition: all .3s ease-in-out;
     transition: all .3s ease-in-out;
 }
+
+.button {
+    width: 70%;
+    padding: 1ex;
+    font-size: 1.2rem;
+    line-height: 1;
+    color: #fff;
+    background: #3498db;
+    border: 0;
+    -webkit-border-radius: .2em;
+    border-radius: .2em;
+    cursor: pointer;
+    -webkit-transition: background .3s ease-in-out;
+    transition: background .3s ease-in-out;
+}
+.button:hover { background: #5dade2 }
+.button:active { background: #2383c4 }
+
+.footer {
+    margin: 1ex 0 0;
+    padding: 1ex;
+    line-height: 1.2;
+    background: #ecf0f1;
+    border-top: 1px solid #ccc
+}
+
+.intsall {
+    display: none;
+    margin:0;
+    padding: 1ex;
+    background: #2c3e50;
+}
+.install .button { background: #d35400 }
