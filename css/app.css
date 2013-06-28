@@ -170,6 +170,7 @@ a:link { -webkit-tap-highlight-color: #34495e }
     font-family: Roboto;
     text-align: center;
     color: #2c3e50;
+    background: #fff;
     border: 0;
 }
 .divider {
@@ -240,3 +241,20 @@ input[type=number]::-webkit-outer-spin-button {
     background: #2c3e50;
 }
 .install .button { background: #d35400 }
+
+@media screen and (orientation:landscape) and (max-height: 20em) {
+    .slideContent {
+        margin-top: 1em;
+        max-width: 30em;
+        max-width: 30em;
+    }
+    .selectTomorrow,
+    .saveButton { display: inline-block; width: 50%; margin: .2em; }
+
+    .selectTomorrow { width: 40% }
+}
+
+@media  only screen and (-webkit-min-device-pixel-ratio: 1.3),
+        only screen and (min-resolution: 260dpi) {
+    body { background: red}
+}

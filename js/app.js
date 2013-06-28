@@ -44,6 +44,13 @@ var countdown = {
 
             clearInterval(that.timer);
             document.getElementById(that.id).innerHTML = l10n[lang].expired;
+            if ('mozNotification' in navigator) {
+                var notification = navigator.mozNotification.createNotification(
+                    l10n[lang].gohome,
+                    l10n[lang].expired
+                );
+                notification.show();
+            }
 
             return;
         }
@@ -141,7 +148,6 @@ else {
     document.getElementById('countdown').innerHTML = l10n[lang].noStorage;
 }
 
-
 var installBtn = document.getElementById('install-btn');
 
 if(installBtn) {
@@ -157,7 +163,11 @@ if(installBtn) {
     if(navigator.mozApps) {
 
         installBtn.addEventListener('click', function() {
-            navigator.mozApps.install(location.href + 'manifest.webapp');
+            var install = navigator.mozApps.install(location.href + 'manifest.webapp');
+            install.onerror = function () {
+                // Display the error information from the DOMError object
+                alert('Install failed, error: ' + this.error.name);
+            };
         }, false);
 
         var req = navigator.mozApps.getSelf();
@@ -169,3 +179,13 @@ if(installBtn) {
 
     }
 }
+
+/*
+var myEL = document.querySelector("#slideContent"),
+    myFs = getComputedStyle(myEL, null).fontSize,
+    myW = myEL.offsetWidth,
+    myH = myEL.offsetHeight,
+    myW = document.documentElement.clientWidth,
+    myH = document.documentElement.clientHeight;
+document.getElementById('debug').innerHTML = myW + 'x' + myH + '/' + myFs;
+*/
