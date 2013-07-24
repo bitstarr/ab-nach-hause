@@ -16,8 +16,8 @@
   },
   "locales": {
     "en-US": {
-      "name": "Work is over",
-      "description": "End of Work Countdown"
+      "name": "Home Time",
+      "description": "A end of work countdown"
     },
     "de": {
       "name": "Ab nach Hause",

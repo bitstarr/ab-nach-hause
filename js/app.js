@@ -1,6 +1,6 @@
 "use strict";
 
-var lang = 'de';
+var lang = window.navigator.userLanguage || window.navigator.language;
 
 // event management by John Resig - http://ejohn.org/projects/flexible-javascript-events/
 function addEvent( obj, type, fn ) {
@@ -43,10 +43,10 @@ var countdown = {
         if (distance < 0) {
 
             clearInterval(that.timer);
-            document.getElementById(that.id).innerHTML = l10n[lang].expired;
+            document.getElementById(that.id).innerHTML = '<div class="expire">' + l10n[lang].expired + '</div>';
             if ('mozNotification' in navigator) {
                 var notification = navigator.mozNotification.createNotification(
-                    l10n[lang].gohome,
+                    l10n[lang].homeTime,
                     l10n[lang].expired
                 );
                 notification.show();
@@ -133,7 +133,22 @@ var feierabend = {
         countdown.stop();
         countdown.init(that.fieldH.value, that.fieldM.value, that.fieldT.checked, 'countdown');
     },
+    translate: function() {
+        if ( typeof l10n[lang] === 'undefined' ) {
+            lang = 'de';
+        }
+        if (lang !== 'de') {
+            document.getElementById('header').innerHTML = l10n[lang].yourHomeTime;
+            document.getElementById('tomorrowLabel').innerHTML = l10n[lang].tomorrow;
+            document.getElementById('saveButton').innerHTML = l10n[lang].save;
+            document.getElementById('installButton').innerHTML = l10n[lang].install;
+            document.getElementById('privacy').innerHTML = l10n[lang].privacy;
+            document.getElementById('byText').innerHTML = l10n[lang].byText;
+            document.getElementById('inspireText').innerHTML = l10n[lang].inspireText;
+        }
+    },
     init: function () {
+        feierabend.translate();
         addEvent(document.forms.feierabend, 'submit', feierabend.processForm);
         var saveData = feierabend.getFeierabend();
         feierabend.fillForm(saveData);
@@ -141,6 +156,7 @@ var feierabend = {
     }
 };
 
+// start up
 if ('localStorage' in window) {
     feierabend.init();
 }

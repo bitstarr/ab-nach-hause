@@ -36,6 +36,8 @@ a:hover, a:active { color: #2c3e50; outline: none }
 /* Highlighting für mobile Webkits http://j.mp/webkit-tap-highlight-color */
 a:link { -webkit-tap-highlight-color: #34495e }
 
+#about { display: none }
+
 .countdown {
     position: relative;
     top: 50%;
@@ -84,7 +86,13 @@ a:link { -webkit-tap-highlight-color: #34495e }
     background: #222;
     box-shadow: 0 1px 0 rgba(255,255,255,.1), 0 1px 0 rgba(0,0,0,.9) inset;
 }
-
+.expire {
+    display: inline-block;
+    font-size: 10vw;
+    font-weight: 700;
+    text-shadow: 0 0 .05ex rgba(0, 0, 0, 0.5);
+    color: #ecf0f1;
+}
 
 .slide {
     position: absolute;

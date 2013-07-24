@@ -32,7 +32,7 @@ c41.723,0,75.546,33.824,75.546,75.547S297.723,331.546,256,331.546z" /></svg>
 </label>
 <div id="slide" class="slide">
     <div id="slideContent" class="slideContent" role="dialog">
-        <header>Dein Feierabend</header>
+        <header id="header">Dein Feierabend</header>
         <form action="/" method="post" class="clearfix" id="feierabend">
             <p class="timeInputs">
                 <input id="myHour" name="myHour" type="number" class="number" maxlength="2" />
@@ -46,22 +46,25 @@ c41.723,0,75.546,33.824,75.546,75.547S297.723,331.546,256,331.546z" /></svg>
 
             <p class="selectTomorrow">
                 <input type="checkbox" name="tomorrow" id="tomorrow" class="tomorrow" />
-                <label for="tomorrow" class="checkLabel">morgen</label>
+                <label for="tomorrow" class="checkLabel" id="tomorrowLabel">morgen</label>
             </p>
             <p class="saveButton">
-                <button type="submit" class="button">Speichern</button>
+                <button type="submit" class="button" id="saveButton">Speichern</button>
             </p>
         </form>
         
         <p class="footer">
-            <small>Deine Daten werden lokal auf deinem Gerät gespeichert.
-            <a href="http://sebastianlaube.de" title="Sebastian Laube">Mit Liebe gemacht</a>, inspiriert von <a href="http://breiteseite.net">Michael Kühn</a></small>
+            <small><span id="privacy">Deine Daten werden lokal auf deinem Gerät gespeichert.</span>
+            <span id="byText">Mit Liebe von</span> <a href="http://sebastianlaube.de" title="Sebastian Laube">Sebastian Laube</a>, <span id="inspireText">inspiriert durch</span> <a href="http://breiteseite.net">Michael Kühn</a></small>
         </p>
 
         <div class="intsall" id="install-btn">
-            <button class="button">Install</button>
+            <button class="button" id="installButton">Installieren</button>
         </div>
         <div id="debug"></div>
+        <div id="about">
+            <p><q>Ab nach Hause!</q> ist nicht der nächste große Hype im Internet. Es hat auch keinen tieferen Sinn, oder größeren Nutzen als einen Feierabend-Countdown. Ich hoffe, Ihr habt trotzdem Spaß damit.</p>
+        </div>
     </div>
 </div>
 
