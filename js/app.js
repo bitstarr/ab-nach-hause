@@ -123,8 +123,14 @@ var feierabend = {
         that.fieldT.checked = (saveData[2] === 'true') ? true : false;
     },
     processForm: function(e) {
-        e.preventDefault();
-        e.stopPropagation();
+        // ie fix
+        if (typeof e.returnValue === 'undefined') {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+        else {
+            e.returnValue = false;
+        }
         if ('vibrate' in navigator) {
             navigator.vibrate(100);
         }

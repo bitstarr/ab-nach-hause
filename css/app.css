@@ -90,7 +90,7 @@ a:link { -webkit-tap-highlight-color: #34495e }
     display: inline-block;
     font-size: 10vw;
     font-weight: 700;
-    text-shadow: 0 0 .05ex rgba(0, 0, 0, 0.5);
+    text-shadow: 0 0 .08ex rgba(0, 0, 0, 0.5);
     color: #ecf0f1;
 }
 
