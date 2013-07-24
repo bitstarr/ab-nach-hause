@@ -123,14 +123,9 @@ var feierabend = {
         that.fieldT.checked = (saveData[2] === 'true') ? true : false;
     },
     processForm: function(e) {
-        // ie fix
-        if (typeof e.returnValue === 'undefined') {
-            e.preventDefault();
-            e.stopPropagation();
-        }
-        else {
-            e.returnValue = false;
-        }
+        // ie fix - http://www.javascripter.net/faq/eventpreventdefault.htm
+        if (e.preventDefault) e.preventDefault();
+        e.returnValue = false;
         if ('vibrate' in navigator) {
             navigator.vibrate(100);
         }
