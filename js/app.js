@@ -124,7 +124,9 @@ var feierabend = {
     },
     processForm: function(e) {
         // ie fix - http://www.javascripter.net/faq/eventpreventdefault.htm
-        if (e.preventDefault) e.preventDefault();
+        if (e.preventDefault) {
+            e.preventDefault();
+        }
         e.returnValue = false;
         if ('vibrate' in navigator) {
             navigator.vibrate(100);
@@ -133,6 +135,9 @@ var feierabend = {
         feierabend.setFeierabend([that.fieldH.value, that.fieldM.value], that.fieldT.checked);
         countdown.stop();
         countdown.init(that.fieldH.value, that.fieldM.value, that.fieldT.checked, 'countdown');
+
+        // close settings
+        document.getElementById('slideToggle').checked = false;
     },
     translate: function() {
         if ( typeof l10n[lang] === 'undefined' ) {
