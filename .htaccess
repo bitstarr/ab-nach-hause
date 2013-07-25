@@ -1,1 +1,40 @@
+AddCharset UTF-8 .html
+
 AddType application/x-web-app-manifest+json .webapp
+
+AddType application/vnd.ms-fontobject  eot
+AddType font/truetype                  ttf
+AddType font/opentype                  otf
+AddType font/woff                      woff
+
+<IfModule mod_expires.c>
+    <IfModule mod_headers.c>
+        Header set Cache-Control "public"
+    </IfModule>
+  
+    ExpiresActive on
+
+    Default für alle Dateien
+    ExpiresDefault                      "access plus 1 month"
+
+    html und xhtml 
+    ExpiresByType text/html                 "access plus 0 seconds"
+    ExpiresByType application/xhtml+xml     "access plus 0 seconds"
+
+
+    #favicon (kann nicht umbenannt werden)
+    ExpiresByType image/vnd.microsoft.icon  "access plus 1 week" 
+  
+    #webfonts
+    ExpiresByType font/truetype             "access plus 1 month"
+    ExpiresByType font/opentype             "access plus 1 month"
+    ExpiresByType font/woff                 "access plus 1 month"
+    ExpiresByType image/svg+xml             "access plus 1 month"
+    ExpiresByType application/vnd.ms-fontobject "access plus 1 month"
+
+    #css and javascript
+    ExpiresByType text/css                  "access plus 1 month"
+    ExpiresByType application/javascript    "access plus 1 month"
+    ExpiresByType text/javascript           "access plus 1 month"
+    ExpiresByType application/x-javascript  "access plus 1 month"
+</IfModule>
