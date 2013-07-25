@@ -7,11 +7,21 @@
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" type="text/css" href="css/app.css" />
 </head>
-<!--[if lt IE 7 ]> <body class="ie6"> <![endif]-->
-<!--[if IE 7 ]>    <body class="ie7"> <![endif]-->
-<!--[if IE 8 ]>    <body class="ie8"> <![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!--> <body> <!--<![endif]-->
+<body>
 
+<!--[if lte IE 9 ]>
+<div class="slideContent" role="dialog">
+        <header id="header">Bad Browser</header>
+        <p>
+            Dein Browser ist zu alt! Hier werden moderne Technologien genutzt, die nur moderne Browser wie <a href="http://www.mozilla.com/firefox/">Mozilla Firefox</a>, <a href="http://www.google.com/chrome?hl=de">Google Chrome</a> und <a href="http://windows.microsoft.com/de-DE/internet-explorer/downloads/ie">Internet Explorer 10</a> beherrschen. Bitte nutze einen von diesen.
+        </p>
+        <p class="footer">
+            Your Browser is too old! Please use a modern browser (mentioned above) for the best experience.
+        </p>
+    </div>
+<![endif]-->
+
+<!--[if !(IE)]><!-->
 <div id="countdown" class="countdown"></div>
 
 <input id="slideToggle" class="slideToggle" name="slideToggle" type="checkbox" />
@@ -55,7 +65,7 @@ c41.723,0,75.546,33.824,75.546,75.547S297.723,331.546,256,331.546z" /></svg>
         
         <p class="footer">
             <small><span id="privacy">Deine Daten werden lokal auf deinem Gerät gespeichert.</span>
-            <span id="byText">Mit Liebe von</span> <a href="http://sebastianlaube.de" title="Sebastian Laube">Sebastian Laube</a>, <span id="inspireText">inspiriert durch</span> <a href="http://breiteseite.net">Michael Kühn</a></small>
+            <span id="byText">Mit Liebe von</span> <a href="http://sebastianlaube.de" title="Sebastian Laube">Sebastian Laube</a>, <span id="inspireText">inspiriert durch</span> <a href="http://breiteseite.net">Michael Kühn</a>.</small>
         </p>
 
         <div class="intsall" id="install-btn">
@@ -67,8 +77,9 @@ c41.723,0,75.546,33.824,75.546,75.547S297.723,331.546,256,331.546z" /></svg>
         </div>
     </div>
 </div>
-
 <script src="js/l10n.js"></script>
 <script src="js/app.js"></script>
+<!--<![endif]-->
+
 </body>
 </html>

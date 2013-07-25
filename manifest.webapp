@@ -1,6 +1,6 @@
 {
   "name": "Ab nach Hause",
-  "version": "0.3",
+  "version": "0.4",
   "description": "End of Work Countdown",
   "launch_path": "/index.html",
   "orientation": ["portrait","landscape-secondary"],

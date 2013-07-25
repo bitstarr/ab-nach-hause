@@ -187,7 +187,8 @@ if(installBtn) {
             };
         }, false);
 
-        var req = navigator.mozApps.getSelf();
+
+        var req = navigator.mozApps.checkInstalled(location.href + 'manifest.webapp');
         req.onsuccess = function() {
             if(!req.result) {
                 installBtn.style.display = 'block';
