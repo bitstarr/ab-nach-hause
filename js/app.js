@@ -38,19 +38,14 @@ var countdown = {
     },
     showRemaining: function() {
         var that = countdown.config,
+            area = document.getElementById(that.id),
             now = new Date(),
             distance = that.end - now;
         if (distance < 0) {
 
             clearInterval(that.timer);
-            document.getElementById(that.id).innerHTML = '<div class="expire">' + l10n[lang].expired + '</div>';
-            if ('mozNotification' in navigator) {
-                var notification = navigator.mozNotification.createNotification(
-                    l10n[lang].homeTime,
-                    l10n[lang].expired
-                );
-                notification.show();
-            }
+            area.innerHTML = '<div class="expired">' + l10n[lang].expired + '</div>';
+            countdown.notify();
 
             return;
         }
@@ -61,7 +56,7 @@ var countdown = {
             string+= '<span class="flip">' + minutes.pad() + '</span> ';
             string+= '<span class="flip">' + seconds.pad() + '</span>';
 
-        document.getElementById(that.id).innerHTML = string;
+        area.innerHTML = string;
     },
     calculateDate: function (hour, minute, tomorrow) {
         if (typeof(tomorrow) === 'boolean') {
@@ -72,6 +67,30 @@ var countdown = {
             result = new Date(now.getFullYear(), now.getMonth(), day, hour, minute);
             //document.getElementById('debug').innerHTML = typeof(tomorrow) + '/' + now.getDate() + '/' + day;
         return result;
+    },
+    notify: function () {
+        if ('Notification' in window) {
+            if (Notification.permission === 'granted') {
+                var notification = new Notification(l10n[lang].homeTime);
+            }
+            else if (Notification.permission !== 'denied') {
+                Notification.requestPermission(function (permission) {
+                    if(!('permission' in Notification)) {
+                        Notification.permission = permission;
+                    }
+                    if (permission === "granted") {
+                        var notification = new Notification(l10n[lang].homeTime);
+                    }
+                });
+            }
+        }
+        else if ('mozNotification' in navigator) {
+            var notification = navigator.mozNotification.createNotification(
+                l10n[lang].expired,
+                l10n[lang].homeTime
+            );
+            notification.show();
+        }
     },
     stop: function () {
         clearInterval(countdown.config.timer);
@@ -182,7 +201,7 @@ if(installBtn) {
     //
     // This code shows the button if the apps platform is available
     // and this app isn't already installed.
-    if(navigator.mozApps) {
+    if(navigator.mozApps && !navigator.appVersion.match('Windows')) {
 
         installBtn.addEventListener('click', function() {
             var install = navigator.mozApps.install(location.href + 'manifest.webapp');
@@ -209,6 +228,9 @@ var myEL = document.querySelector("#slideContent"),
     myW = myEL.offsetWidth,
     myH = myEL.offsetHeight,
     myW = document.documentElement.clientWidth,
-    myH = document.documentElement.clientHeight;
-document.getElementById('debug').innerHTML = myW + 'x' + myH + '/' + myFs;
-*/
+    myH = document.documentElement.clientHeight,
+    myO = navigator.appVersion,
+    myN = ('Notification' in window);
+//document.getElementById('debug').innerHTML = myW + 'x' + myH + '/' + myFs;
+document.getElementById('debug').innerHTML = myO + myN;
+/* */

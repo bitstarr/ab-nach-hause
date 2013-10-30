@@ -14,7 +14,7 @@ var l10n = {
 	},
     en: {
         expired: 'Time to go Home!',
-        homeTime: 'home Time',
+        homeTime: 'Home Time',
         yourHomeTime: 'Your Home Time',
         noStorage: 'No Access to Storage :(',
         tomorrow: 'tomorrow',
