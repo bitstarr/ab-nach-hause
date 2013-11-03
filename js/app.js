@@ -193,8 +193,9 @@ var installBtn = document.getElementById('install-btn');
 
 if(installBtn) {
     
+    var homeUrl = location.protocol + '//' + location.host + '/';
     installBtn.style.display = 'none';
-    
+
     // If you want an installation button, add this to your HTML:
     //
     // <button id="install-btn">Install</button>
@@ -204,17 +205,20 @@ if(installBtn) {
     if(navigator.mozApps && !navigator.appVersion.match('Windows')) {
 
         installBtn.addEventListener('click', function() {
-            var install = navigator.mozApps.install(location.href + 'manifest.webapp');
+            var install = navigator.mozApps.install(homeUrl + 'manifest.webapp');
             install.onerror = function () {
                 // Display the error information from the DOMError object
                 alert('Install failed, error: ' + this.error.name);
             };
         }, false);
 
-
-        var req = navigator.mozApps.checkInstalled(location.href + 'manifest.webapp');
-        req.onsuccess = function() {
-            if(!req.result) {
+        // is the app not installed - show button
+        var req = window.navigator.mozApps.checkInstalled(homeUrl + 'manifest.webapp');
+        req.onerror = function(e) {
+            alert("Error calling checkInstalled: " + req.error.name);
+        };
+        req.onsuccess = function(e) {
+            if (!req.result) {
                 installBtn.style.display = 'block';
             }
         };
